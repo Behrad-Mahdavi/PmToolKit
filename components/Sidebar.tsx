@@ -2,6 +2,7 @@
 
 import React from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { 
   LayoutDashboard, 
@@ -48,9 +49,7 @@ export function Sidebar({ projectId, darkMode, setDarkMode }: SidebarProps) {
       <div>
         {/* Brand Header */}
         <div className="flex items-center gap-3 px-2 py-3 mb-6 border-b border-[var(--border-subtle)]">
-          <div className="w-8 h-8 rounded bg-[var(--signal-teal)] text-white flex items-center justify-center font-display font-bold">
-            PM
-          </div>
+          <Image src="/logo.png" alt="PM Toolkit" width={32} height={32} className="rounded" />
           <div>
             <h1 className="font-display font-bold text-sm tracking-tight">PM Toolkit</h1>
             <p className="text-[11px] opacity-60">ابزار مهندسی تصمیم محصول</p>

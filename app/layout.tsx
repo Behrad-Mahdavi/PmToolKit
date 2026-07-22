@@ -1,10 +1,30 @@
 import type { Metadata } from "next";
+import localFont from "next/font/local";
 import "./globals.css";
 import { AuthProvider } from "@/components/AuthProvider";
 
+const iranSansX = localFont({
+  src: [
+    { path: "../public/fonts/IRANSansXFaNum-Thin.ttf", weight: "100" },
+    { path: "../public/fonts/IRANSansXFaNum-UltraLight.ttf", weight: "200" },
+    { path: "../public/fonts/IRANSansXFaNum-Light.ttf", weight: "300" },
+    { path: "../public/fonts/IRANSansXFaNum-Regular.ttf", weight: "400" },
+    { path: "../public/fonts/IRANSansXFaNum-Medium.ttf", weight: "500" },
+    { path: "../public/fonts/IRANSansXFaNum-DemiBold.ttf", weight: "600" },
+    { path: "../public/fonts/IRANSansXFaNum-Bold.ttf", weight: "700" },
+    { path: "../public/fonts/IRANSansXFaNum-ExtraBold.ttf", weight: "800" },
+    { path: "../public/fonts/IRANSansXFaNum-Black.ttf", weight: "900" },
+    { path: "../public/fonts/IRANSansXFaNum-Heavy.ttf", weight: "950" },
+    { path: "../public/fonts/IRANSansXFaNum-ExtraBlack.ttf", weight: "1000" },
+  ],
+  variable: "--font-iransansx",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
-  title: "ابزار جامع مدیریت محصول (PM Toolkit)",
+  title: "PM Toolkit — ابزار جامع مدیریت محصول",
   description: "ابزار مهندسی و تحلیل تصمیمات محصول برای Product Manager ها",
+  icons: { icon: "/logo.png" },
 };
 
 export default function RootLayout({
@@ -13,16 +33,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fa" dir="rtl" className="h-full">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;700&family=Vazirmatn:wght@300;400;500;600;700&display=swap"
-          rel="stylesheet"
-        />
-      </head>
-      <body className="min-h-full flex flex-col antialiased">
+    <html lang="fa" dir="rtl" className={`h-full ${iranSansX.variable}`}>
+      <body className="min-h-full flex flex-col antialiased font-sans">
         <AuthProvider>
           {children}
         </AuthProvider>

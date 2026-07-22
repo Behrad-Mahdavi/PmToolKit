@@ -25,17 +25,17 @@
 body {
   background-color: var(--bg-paper);
   color: var(--ink);
-  font-family: 'Vazirmatn', sans-serif;
+  font-family: var(--font-iransansx), sans-serif;
   transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 .font-mono-num {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: var(--font-iransansx), sans-serif;
   font-variant-numeric: tabular-nums;
 }
 
 .font-display {
-  font-family: 'Space Grotesk', 'Vazirmatn', sans-serif;
+  font-family: var(--font-iransansx), sans-serif;
 }
 
 .pm-card {
