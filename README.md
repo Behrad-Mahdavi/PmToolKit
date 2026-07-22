@@ -48,40 +48,7 @@
 
 ## 🚀 شروع کار
 
-### ۱. پیش‌نیازها
-
-- Node.js ≥ 18
-- npm / yarn / pnpm
-
-### ۲. نصب
-
-```bash
-git clone https://github.com/Behrad-Mahdavi/PmToolKit.git
-cd PmToolKit
-npm install
-```
-
-### ۳. تنظیم متغیرهای محیطی
-
-یک فایل `.env` در ریشه پروژه با محتوای زیر بسازید:
-
-```
-NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
-```
-
-### ۴. ایجاد جداول در Supabase
-
-محتوای فایل `supabase_schema.sql` را در **SQL Editor** سوپابیس اجرا کنید تا ۸ جدول و RLS policies ایجاد شوند.
-
-### ۵. اجرا
-
-```bash
-npm run dev
-```
-
-مرورگر را در [http://localhost:3000](http://localhost:3000) باز کنید.
-
+- Go to pm-tool-kit.vercel.app
 ---
 
 ## 🌐 مستندات API و فرمول‌ها
