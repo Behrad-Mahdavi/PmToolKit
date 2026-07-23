@@ -33,7 +33,7 @@ export default function ReportsPage() {
 
   return (
     <div className="flex h-screen overflow-hidden print:h-auto print:overflow-visible">
-      <div className="print:hidden"><Sidebar projectId={projectId} darkMode={darkMode} setDarkMode={setDarkMode} /></div>
+      <div className="print:hidden flex"><Sidebar projectId={projectId} darkMode={darkMode} setDarkMode={setDarkMode} /></div>
       <main className="flex-1 overflow-y-auto flex flex-col print:overflow-visible">
         <header className="h-16 border-b border-[var(--border-subtle)] bg-[var(--card-bg)] px-8 flex items-center justify-between shrink-0 print:hidden">
           <div className="flex items-center gap-3"><FileText className="w-5 h-5 text-[var(--signal-teal)]" /><h1 className="font-display font-bold text-lg">مرکز گزارشات و خروجی</h1></div>
