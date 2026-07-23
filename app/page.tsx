@@ -15,10 +15,11 @@ import {
   MetricSnapshot
 } from '@/lib/pmStore'
 import Link from 'next/link'
+import { useDarkMode } from '@/hooks/useDarkMode'
 import { TrendingUp, Layers, AlertTriangle, DollarSign } from 'lucide-react'
 
 export default function CentralDashboard() {
-  const [darkMode, setDarkMode] = useState(false)
+  const [darkMode, setDarkMode] = useDarkMode()
   const [projects, setProjects] = useState<Project[]>([])
   const [currentProjId, setCurrentProjId] = useState('proj-1')
   const [backlogItems, setBacklogItems] = useState<BacklogItem[]>([])
@@ -37,14 +38,6 @@ export default function CentralDashboard() {
     }
     load()
   }, [])
-
-  useEffect(() => {
-    if (darkMode) {
-      document.documentElement.classList.add('dark')
-    } else {
-      document.documentElement.classList.remove('dark')
-    }
-  }, [darkMode])
 
   const handleProjectChange = async (e: React.ChangeEvent<HTMLSelectElement>) => {
     const newId = e.target.value

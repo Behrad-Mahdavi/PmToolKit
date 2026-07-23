@@ -4,12 +4,13 @@ import React, { useState, useEffect } from 'react'
 import { useParams } from 'next/navigation'
 import { Sidebar } from '@/components/Sidebar'
 import { getExperiments, saveExperiment, Experiment } from '@/lib/pmStore'
+import { useDarkMode } from '@/hooks/useDarkMode'
 import { FlaskConical, AlertTriangle, CheckCircle2, Calculator, Plus, Check } from 'lucide-react'
 
 export default function ExperimentsPage() {
   const params = useParams()
   const projectId = (params?.id as string) || 'proj-1'
-  const [darkMode, setDarkMode] = useState(false)
+  const [darkMode, setDarkMode] = useDarkMode()
   const [experiments, setExperiments] = useState<Experiment[]>([])
   const [selectedExpId, setSelectedExpId] = useState<string>('')
   const [name, setName] = useState('بهینه‌سازی دکمه خرید')
@@ -44,10 +45,7 @@ export default function ExperimentsPage() {
     setStatus(exp.status as any)
   }
 
-  useEffect(() => {
-    if (darkMode) document.documentElement.classList.add('dark')
-    else document.documentElement.classList.remove('dark')
-  }, [darkMode])
+
 
   const p1 = baselineRate / 100
   const p2 = (baselineRate + mde) / 100

@@ -4,12 +4,13 @@ import React, { useState, useEffect } from 'react'
 import { useParams } from 'next/navigation'
 import { Sidebar } from '@/components/Sidebar'
 import { calculateUnitEconomics, UnitEconomicsOutput } from '@/lib/formulas'
+import { useDarkMode } from '@/hooks/useDarkMode'
 import { Calculator, AlertCircle, CheckCircle2 } from 'lucide-react'
 
 export default function UnitEconomicsPage() {
   const params = useParams()
   const projectId = (params?.id as string) || 'proj-1'
-  const [darkMode, setDarkMode] = useState(false)
+  const [darkMode, setDarkMode] = useDarkMode()
   const [marketingCost, setMarketingCost] = useState(15000000)
   const [newCustomers, setNewCustomers] = useState(120)
   const [arpu, setArpu] = useState(250000)
@@ -20,11 +21,6 @@ export default function UnitEconomicsPage() {
   const [result, setResult] = useState<UnitEconomicsOutput>(
     calculateUnitEconomics({ totalMarketingCost: 15000000, newCustomers: 120, arpu: 250000, grossMarginPct: 80, churnRatePct: 3.2, mrr: 24800000 })
   )
-
-  useEffect(() => {
-    if (darkMode) document.documentElement.classList.add('dark')
-    else document.documentElement.classList.remove('dark')
-  }, [darkMode])
 
   const handleCalc = (e: React.FormEvent) => {
     e.preventDefault()

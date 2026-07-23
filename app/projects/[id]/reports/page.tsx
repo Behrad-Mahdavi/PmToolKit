@@ -4,12 +4,13 @@ import React, { useState, useEffect } from 'react'
 import { useParams } from 'next/navigation'
 import { Sidebar } from '@/components/Sidebar'
 import { getBacklogItems, getMetricSnapshots, BacklogItem, MetricSnapshot } from '@/lib/pmStore'
+import { useDarkMode } from '@/hooks/useDarkMode'
 import { FileText, Download, Printer } from 'lucide-react'
 
 export default function ReportsPage() {
   const params = useParams()
   const projectId = (params?.id as string) || 'proj-1'
-  const [darkMode, setDarkMode] = useState(false)
+  const [darkMode, setDarkMode] = useDarkMode()
   const [backlog, setBacklog] = useState<BacklogItem[]>([])
   const [metrics, setMetrics] = useState<MetricSnapshot[]>([])
 
@@ -17,11 +18,6 @@ export default function ReportsPage() {
     getBacklogItems(projectId).then(setBacklog)
     getMetricSnapshots(projectId).then(setMetrics)
   }, [projectId])
-
-  useEffect(() => {
-    if (darkMode) document.documentElement.classList.add('dark')
-    else document.documentElement.classList.remove('dark')
-  }, [darkMode])
 
   const exportCSV = () => {
     if (backlog.length === 0) return

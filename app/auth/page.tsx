@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react'
 import { supabase } from '@/lib/supabase'
 import { useRouter } from 'next/navigation'
+import { useDarkMode } from '@/hooks/useDarkMode'
 import { ShieldCheck, Moon, Sun, ArrowRight, KeyRound, Mail } from 'lucide-react'
 
 export default function AuthPage() {
@@ -12,16 +13,8 @@ export default function AuthPage() {
   const [loading, setLoading] = useState(false)
   const [errorMsg, setErrorMsg] = useState('')
   const [successMsg, setSuccessMsg] = useState('')
-  const [darkMode, setDarkMode] = useState(false)
+  const [darkMode, setDarkMode] = useDarkMode()
   const router = useRouter()
-
-  useEffect(() => {
-    if (darkMode) {
-      document.documentElement.classList.add('dark')
-    } else {
-      document.documentElement.classList.remove('dark')
-    }
-  }, [darkMode])
 
   // Check if session already exists
   useEffect(() => {

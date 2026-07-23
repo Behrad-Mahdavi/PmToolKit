@@ -4,21 +4,19 @@ import React, { useState, useEffect } from 'react'
 import { useParams } from 'next/navigation'
 import { Sidebar } from '@/components/Sidebar'
 import { getOKRs, saveOKR, deleteOKR, OKR, KeyResult } from '@/lib/pmStore'
+import { useDarkMode } from '@/hooks/useDarkMode'
 import { Target, Plus } from 'lucide-react'
 
 export default function OkrsPage() {
   const params = useParams()
   const projectId = (params?.id as string) || 'proj-1'
-  const [darkMode, setDarkMode] = useState(false)
+  const [darkMode, setDarkMode] = useDarkMode()
   const [okrs, setOkrs] = useState<OKR[]>([])
   const [newObjective, setNewObjective] = useState('')
   const [newQuarter, setNewQuarter] = useState('۱۴۰۵ - ۴Q')
 
   useEffect(() => { getOKRs(projectId).then(setOkrs) }, [projectId])
-  useEffect(() => {
-    if (darkMode) document.documentElement.classList.add('dark')
-    else document.documentElement.classList.remove('dark')
-  }, [darkMode])
+
 
   const handleAddObjective = async (e: React.FormEvent) => {
     e.preventDefault()

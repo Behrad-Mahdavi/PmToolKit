@@ -4,13 +4,14 @@ import React, { useState, useEffect } from 'react'
 import { useParams } from 'next/navigation'
 import { Sidebar } from '@/components/Sidebar'
 import { getPricingSettings, savePricingSettings } from '@/lib/pmStore'
+import { useDarkMode } from '@/hooks/useDarkMode'
 import { Tag, Save, HelpCircle as QuestionIcon } from 'lucide-react'
 import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, Tooltip, CartesianGrid, Legend } from 'recharts'
 
 export default function PricingPage() {
   const params = useParams()
   const projectId = (params?.id as string) || 'proj-1'
-  const [darkMode, setDarkMode] = useState(false)
+  const [darkMode, setDarkMode] = useDarkMode()
   const [tooCheap, setTooCheap] = useState(10000); const [cheap, setCheap] = useState(20000)
   const [expensive, setExpensive] = useState(45000); const [tooExpensive, setTooExpensive] = useState(70000)
   const [attractiveCount, setAttractiveCount] = useState(15)
@@ -25,10 +26,7 @@ export default function PricingPage() {
     })
   }, [projectId])
 
-  useEffect(() => {
-    if (darkMode) document.documentElement.classList.add('dark')
-    else document.documentElement.classList.remove('dark')
-  }, [darkMode])
+
 
   const handleSaveSettings = async () => {
     await savePricingSettings({ projectId, tooCheap, cheap, expensive, tooExpensive, attractive: attractiveCount, performance: performanceCount, mustBe: mustBeCount, indifferent: indifferentCount })

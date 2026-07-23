@@ -5,12 +5,13 @@ import { useParams } from 'next/navigation'
 import { Sidebar } from '@/components/Sidebar'
 import { getMetricSnapshots, saveMetricSnapshot, MetricSnapshot } from '@/lib/pmStore'
 import { ConfidenceStrip } from '@/components/ConfidenceStrip'
+import { useDarkMode } from '@/hooks/useDarkMode'
 import { TrendingUp, Plus } from 'lucide-react'
 
 export default function MetricsPage() {
   const params = useParams()
   const projectId = (params?.id as string) || 'proj-1'
-  const [darkMode, setDarkMode] = useState(false)
+  const [darkMode, setDarkMode] = useDarkMode()
   const [metrics, setMetrics] = useState<MetricSnapshot[]>([])
   const [name, setName] = useState('')
   const [metricType, setMetricType] = useState<'north-star' | 'leading' | 'lagging' | 'guardrail'>('leading')
@@ -20,10 +21,6 @@ export default function MetricsPage() {
   const [normMax, setNormMax] = useState<number>(100)
 
   useEffect(() => { getMetricSnapshots(projectId).then(setMetrics) }, [projectId])
-  useEffect(() => {
-    if (darkMode) document.documentElement.classList.add('dark')
-    else document.documentElement.classList.remove('dark')
-  }, [darkMode])
 
   const handleAdd = async (e: React.FormEvent) => {
     e.preventDefault()

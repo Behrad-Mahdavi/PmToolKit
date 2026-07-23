@@ -10,13 +10,14 @@ import {
   BacklogItem
 } from '@/lib/pmStore'
 import { calculateRICE, calculateICE } from '@/lib/formulas'
+import { useDarkMode } from '@/hooks/useDarkMode'
 import { FolderKanban, Plus, Trash2, BarChart2 } from 'lucide-react'
 import { ResponsiveContainer, ScatterChart, Scatter, XAxis, YAxis, Tooltip, CartesianGrid } from 'recharts'
 
 export default function BacklogPage() {
   const params = useParams()
   const projectId = (params?.id as string) || 'proj-1'
-  const [darkMode, setDarkMode] = useState(false)
+  const [darkMode, setDarkMode] = useDarkMode()
   const [items, setItems] = useState<BacklogItem[]>([])
   const [filterKano, setFilterKano] = useState<string>('all')
   const [isAdding, setIsAdding] = useState(false)
@@ -35,11 +36,6 @@ export default function BacklogPage() {
   useEffect(() => {
     getBacklogItems(projectId).then(setItems)
   }, [projectId])
-
-  useEffect(() => {
-    if (darkMode) document.documentElement.classList.add('dark')
-    else document.documentElement.classList.remove('dark')
-  }, [darkMode])
 
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault()

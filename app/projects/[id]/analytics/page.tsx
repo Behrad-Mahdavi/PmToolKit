@@ -4,12 +4,13 @@ import React, { useState, useEffect } from 'react'
 import { useParams } from 'next/navigation'
 import { Sidebar } from '@/components/Sidebar'
 import { getFunnels, saveFunnel, getCohortEntries, saveCohortEntry, Funnel, CohortEntry, FunnelStep } from '@/lib/pmStore'
+import { useDarkMode } from '@/hooks/useDarkMode'
 import { Network, BarChart2, Plus, Save } from 'lucide-react'
 
 export default function AnalyticsPage() {
   const params = useParams()
   const projectId = (params?.id as string) || 'proj-1'
-  const [darkMode, setDarkMode] = useState(false)
+  const [darkMode, setDarkMode] = useDarkMode()
   const [funnels, setFunnels] = useState<Funnel[]>([])
   const [selectedFunnelId, setSelectedFunnelId] = useState('')
   const [funnelName, setFunnelName] = useState('')
@@ -33,10 +34,7 @@ export default function AnalyticsPage() {
     setSteps(f.steps)
   }
 
-  useEffect(() => {
-    if (darkMode) document.documentElement.classList.add('dark')
-    else document.documentElement.classList.remove('dark')
-  }, [darkMode])
+
 
   const getHeatmapColor = (pct: number) => {
     if (pct === 100) return 'bg-[var(--signal-teal)] text-white font-bold'
