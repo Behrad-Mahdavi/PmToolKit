@@ -5,6 +5,7 @@ import { useParams } from 'next/navigation'
 import { Sidebar } from '@/components/Sidebar'
 import { calculateUnitEconomics, UnitEconomicsOutput } from '@/lib/formulas'
 import { useDarkMode } from '@/hooks/useDarkMode'
+import { FieldLabel } from '@/components/FieldLabel'
 import { Calculator, AlertCircle, CheckCircle2 } from 'lucide-react'
 
 export default function UnitEconomicsPage() {
@@ -40,32 +41,32 @@ export default function UnitEconomicsPage() {
               <h3 className="font-display font-bold text-base mb-4 pb-3 border-b border-[var(--border-subtle)]">پارامترهای ورودی</h3>
               <form onSubmit={handleCalc} className="space-y-4 text-sm">
                 <div>
-                  <label className="block text-xs font-medium opacity-70 mb-1">هزینه کل فروش و بازاریابی (تومان)</label>
+                  <label className="block text-xs font-medium opacity-70 mb-1"><FieldLabel label="هزینه فروش و بازاریابی (تومان)" hint="توی این بازه چقدر خرج جذب مشتری کردی؟ (تبلیغات + حقوق تیم فروش/مارکتینگ)" /></label>
                   <input type="number" value={marketingCost} onChange={e => setMarketingCost(Number(e.target.value))}
                     className="w-full px-3 py-2 rounded bg-[var(--bg-paper)] border border-[var(--border-subtle)] font-mono-num" />
                 </div>
                 <div>
-                  <label className="block text-xs font-medium opacity-70 mb-1">مشتری جدید</label>
+                  <label className="block text-xs font-medium opacity-70 mb-1"><FieldLabel label="مشتری جدید" hint="توی همین بازه چند مشتری جدید گرفتی؟" /></label>
                   <input type="number" value={newCustomers} onChange={e => setNewCustomers(Number(e.target.value))}
                     className="w-full px-3 py-2 rounded bg-[var(--bg-paper)] border border-[var(--border-subtle)] font-mono-num" />
                 </div>
                 <div>
-                  <label className="block text-xs font-medium opacity-70 mb-1">ARPU (تومان)</label>
+                  <label className="block text-xs font-medium opacity-70 mb-1"><FieldLabel label="ARPU (تومان)" hint="میانگین درآمدت از هر مشتری در ماه چقدره؟" /></label>
                   <input type="number" value={arpu} onChange={e => setArpu(Number(e.target.value))}
                     className="w-full px-3 py-2 rounded bg-[var(--bg-paper)] border border-[var(--border-subtle)] font-mono-num" />
                 </div>
                 <div>
-                  <label className="block text-xs font-medium opacity-70 mb-1">Gross Margin %</label>
+                  <label className="block text-xs font-medium opacity-70 mb-1"><FieldLabel label="Gross Margin %" hint="از هر تومن فروش، بعد از کسر هزینه‌ی مستقیم ارائه‌ی خدمت، چند درصد برات می‌مونه؟" /></label>
                   <input type="number" value={grossMargin} onChange={e => setGrossMargin(Number(e.target.value))}
                     className="w-full px-3 py-2 rounded bg-[var(--bg-paper)] border border-[var(--border-subtle)] font-mono-num" />
                 </div>
                 <div>
-                  <label className="block text-xs font-medium opacity-70 mb-1">Churn Rate %</label>
+                  <label className="block text-xs font-medium opacity-70 mb-1"><FieldLabel label="Churn Rate %" hint="چند درصد مشتری‌هات توی این بازه از دستت رفتن؟" /></label>
                   <input type="number" step="0.1" value={churnRate} onChange={e => setChurnRate(Number(e.target.value))}
                     className="w-full px-3 py-2 rounded bg-[var(--bg-paper)] border border-[var(--border-subtle)] font-mono-num" />
                 </div>
                 <div>
-                  <label className="block text-xs font-medium opacity-70 mb-1">MRR (تومان)</label>
+                  <label className="block text-xs font-medium opacity-70 mb-1"><FieldLabel label="MRR (تومان)" hint="درآمد ماهانه عادی (تکراری) از همه مشتری‌ها چقدره؟" /></label>
                   <input type="number" value={mrr} onChange={e => setMrr(Number(e.target.value))}
                     className="w-full px-3 py-2 rounded bg-[var(--bg-paper)] border border-[var(--border-subtle)] font-mono-num" />
                 </div>

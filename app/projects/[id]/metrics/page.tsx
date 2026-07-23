@@ -6,6 +6,7 @@ import { Sidebar } from '@/components/Sidebar'
 import { getMetricSnapshots, saveMetricSnapshot, MetricSnapshot } from '@/lib/pmStore'
 import { ConfidenceStrip } from '@/components/ConfidenceStrip'
 import { useDarkMode } from '@/hooks/useDarkMode'
+import { FieldLabel } from '@/components/FieldLabel'
 import { TrendingUp, Plus } from 'lucide-react'
 
 export default function MetricsPage() {
@@ -42,10 +43,12 @@ export default function MetricsPage() {
             <h3 className="font-display font-bold text-base mb-4 pb-3 border-b border-[var(--border-subtle)]">ثبت سنجش متریک جدید</h3>
             <form onSubmit={handleAdd} className="grid grid-cols-1 md:grid-cols-6 gap-4 text-sm">
               <div className="md:col-span-2">
-                <input type="text" required value={name} onChange={e => setName(e.target.value)} placeholder="نام متریک"
+                <label className="block text-xs font-medium opacity-70 mb-1"><FieldLabel label="نام متریک" hint="این متریک چیه؟ (مثلاً «تعداد کاربر فعال روزانه»)" /></label>
+                <input type="text" required value={name} onChange={e => setName(e.target.value)} placeholder="مثلاً کاربر فعال روزانه"
                   className="w-full px-3 py-2 rounded bg-[var(--bg-paper)] border border-[var(--border-subtle)]" />
               </div>
               <div>
+                <label className="block text-xs font-medium opacity-70 mb-1"><FieldLabel label="نوع متریک" hint="North Star: اصلی‌ترین متریک کسب‌وکار / Leading: پیش‌بینی‌کننده / Lagging: نتیجه نهایی / Guardrail: مرز هشدار" /></label>
                 <select value={metricType} onChange={e => setMetricType(e.target.value as any)}
                   className="w-full px-3 py-2 rounded bg-[var(--bg-paper)] border border-[var(--border-subtle)]">
                   <option value="north-star">North Star</option>
@@ -55,10 +58,12 @@ export default function MetricsPage() {
                 </select>
               </div>
               <div>
+                <label className="block text-xs font-medium opacity-70 mb-1"><FieldLabel label="مقدار" hint="امروز این متریک روی چه عددیه؟" /></label>
                 <input type="number" step="0.01" required value={value} onChange={e => setValue(Number(e.target.value))}
                   className="w-full px-3 py-2 rounded bg-[var(--bg-paper)] border border-[var(--border-subtle)] font-mono-num" />
               </div>
               <div>
+                <label className="block text-xs font-medium opacity-70 mb-1"><FieldLabel label="واحد" hint="مثلاً نفر، درصد، تومان، دقیقه" /></label>
                 <input type="text" value={unit} onChange={e => setUnit(e.target.value)}
                   className="w-full px-3 py-2 rounded bg-[var(--bg-paper)] border border-[var(--border-subtle)]" />
               </div>

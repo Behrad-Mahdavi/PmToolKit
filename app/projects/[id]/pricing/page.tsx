@@ -5,6 +5,7 @@ import { useParams } from 'next/navigation'
 import { Sidebar } from '@/components/Sidebar'
 import { getPricingSettings, savePricingSettings } from '@/lib/pmStore'
 import { useDarkMode } from '@/hooks/useDarkMode'
+import { FieldLabel } from '@/components/FieldLabel'
 import { Tag, Save, HelpCircle as QuestionIcon } from 'lucide-react'
 import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, Tooltip, CartesianGrid, Legend } from 'recharts'
 
@@ -72,9 +73,14 @@ export default function PricingPage() {
             <div className="pm-card p-6 lg:col-span-1 space-y-6">
               <h3 className="font-display font-bold text-base pb-3 border-b border-[var(--border-subtle)]">تنظیمات Van Westendorp</h3>
               <div className="space-y-4 text-sm">
-                {[{ l: 'خیلی ارزان (تومان)', v: tooCheap, s: setTooCheap }, { l: 'ارزان (تومان)', v: cheap, s: setCheap }, { l: 'گران (تومان)', v: expensive, s: setExpensive }, { l: 'خیلی گران (تومان)', v: tooExpensive, s: setTooExpensive }].map((inp, i) => (
+                {[
+                  { l: 'خیلی ارزان (تومان)', v: tooCheap, s: setTooCheap, h: 'از چه قیمتی این محصول اونقدر ارزونه که به کیفیتش شک می‌کنی؟' },
+                  { l: 'ارزان (تومان)', v: cheap, s: setCheap, h: 'از چه قیمتی احساس می‌کنی داری خوب معامله می‌کنی؟' },
+                  { l: 'گران (تومان)', v: expensive, s: setExpensive, h: 'از چه قیمتی شروع می‌کنه گرون به‌نظر برسه ولی بازم می‌خری؟' },
+                  { l: 'خیلی گران (تومان)', v: tooExpensive, s: setTooExpensive, h: 'از چه قیمتی دیگه اصلاً نمی‌خری؟' }
+                ].map((inp, i) => (
                   <div key={i}>
-                    <label className="block text-xs font-medium opacity-70 mb-1">{inp.l}</label>
+                    <label className="block text-xs font-medium opacity-70 mb-1"><FieldLabel label={inp.l} hint={inp.h} /></label>
                     <input type="number" value={inp.v} onChange={e => inp.s(Number(e.target.value))}
                       className="w-full px-3 py-2 rounded bg-[var(--bg-paper)] border border-[var(--border-subtle)] font-mono-num font-medium" />
                   </div>

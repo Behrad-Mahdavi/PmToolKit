@@ -11,6 +11,7 @@ import {
 } from '@/lib/pmStore'
 import { calculateRICE, calculateICE } from '@/lib/formulas'
 import { useDarkMode } from '@/hooks/useDarkMode'
+import { FieldLabel } from '@/components/FieldLabel'
 import { FolderKanban, Plus, Trash2, BarChart2 } from 'lucide-react'
 import { ResponsiveContainer, ScatterChart, Scatter, XAxis, YAxis, Tooltip, CartesianGrid } from 'recharts'
 
@@ -99,7 +100,7 @@ export default function BacklogPage() {
                 </div>
                 <div className="space-y-3">
                   <div>
-                    <label className="block text-xs font-medium opacity-70 mb-1">دسته Kano</label>
+                    <label className="block text-xs font-medium opacity-70 mb-1"><FieldLabel label="دسته Kano" hint="اگه این فیچر رو داشته باشی چه حسی داری؟ (عملکردی) / اگه نداشته باشی چی؟ (ضدعملکردی)" /></label>
                     <select value={kanoCategory} onChange={e => setKanoCategory(e.target.value)}
                       className="w-full px-3 py-2 rounded bg-[var(--bg-paper)] border border-[var(--border-subtle)]">
                       <option value="Must-be">Must-be</option>
@@ -122,22 +123,22 @@ export default function BacklogPage() {
                 </div>
                 <div className="md:col-span-3 grid grid-cols-2 md:grid-cols-4 gap-4 p-4 rounded bg-[var(--bg-paper)] border border-[var(--border-subtle)]">
                   <div>
-                    <label className="block text-xs font-medium opacity-70 mb-1">Reach</label>
+                    <label className="block text-xs font-medium opacity-70 mb-1"><FieldLabel label="Reach" hint="چند نفر کاربر توی یک بازه‌ی مشخص (مثلاً یک ماه) این تغییر رو تجربه می‌کنن؟ عدد واقعی بزن، نه حدسی." /></label>
                     <input type="number" value={reach} onChange={e => setReach(Number(e.target.value))}
                       className="w-full px-3 py-1.5 rounded bg-[var(--card-bg)] border border-[var(--border-subtle)] font-mono-num" />
                   </div>
                   <div>
-                    <label className="block text-xs font-medium opacity-70 mb-1">Impact</label>
+                    <label className="block text-xs font-medium opacity-70 mb-1"><FieldLabel label="Impact" hint="این کار چقدر روی هدفت اثر می‌ذاره؟ ۳=خیلی‌زیاد، ۲=زیاد، ۱=متوسط، ۰.۵=کم، ۰.۲۵=خیلی‌کم" /></label>
                     <input type="number" step="0.25" value={impact} onChange={e => setImpact(Number(e.target.value))}
                       className="w-full px-3 py-1.5 rounded bg-[var(--card-bg)] border border-[var(--border-subtle)] font-mono-num" />
                   </div>
                   <div>
-                    <label className="block text-xs font-medium opacity-70 mb-1">Confidence</label>
+                    <label className="block text-xs font-medium opacity-70 mb-1"><FieldLabel label="Confidence" hint="چقدر به این تخمین‌ها مطمئنی؟ بین ۰ تا ۱۰۰٪ — اگه داده‌ی محکم نداری، پایین بزن" /></label>
                     <input type="number" value={confidence} onChange={e => setConfidence(Number(e.target.value))}
                       className="w-full px-3 py-1.5 rounded bg-[var(--card-bg)] border border-[var(--border-subtle)] font-mono-num" />
                   </div>
                   <div>
-                    <label className="block text-xs font-medium opacity-70 mb-1">Effort</label>
+                    <label className="block text-xs font-medium opacity-70 mb-1"><FieldLabel label="Effort" hint="این کار چند نفر-ماه زمان می‌بره؟ (مثلاً ۲ نفر برای نیم ماه = ۱)" /></label>
                     <input type="number" step="0.1" value={effort} onChange={e => setEffort(Number(e.target.value))}
                       className="w-full px-3 py-1.5 rounded bg-[var(--card-bg)] border border-[var(--border-subtle)] font-mono-num" />
                   </div>

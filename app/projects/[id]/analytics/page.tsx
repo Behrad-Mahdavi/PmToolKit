@@ -5,6 +5,7 @@ import { useParams } from 'next/navigation'
 import { Sidebar } from '@/components/Sidebar'
 import { getFunnels, saveFunnel, getCohortEntries, saveCohortEntry, Funnel, CohortEntry, FunnelStep } from '@/lib/pmStore'
 import { useDarkMode } from '@/hooks/useDarkMode'
+import { FieldLabel } from '@/components/FieldLabel'
 import { Network, BarChart2, Plus, Save } from 'lucide-react'
 
 export default function AnalyticsPage() {
@@ -106,7 +107,7 @@ export default function AnalyticsPage() {
               <h3 className="font-display font-bold text-xs opacity-70 uppercase pb-2 border-b border-[var(--border-subtle)]">ساختار قیف (Funnel Builder)</h3>
               <div className="text-sm space-y-4">
                 <div>
-                  <label className="block text-xs font-medium opacity-70 mb-1">نام قیف</label>
+                  <label className="block text-xs font-medium opacity-70 mb-1"><FieldLabel label="نام قیف" hint="به قیفت یه اسم بده، مثلاً «قیف فروش فروردین»" /></label>
                   <input type="text" value={funnelName} onChange={e => setFunnelName(e.target.value)}
                     className="w-full px-3 py-1.5 rounded bg-[var(--bg-paper)] border border-[var(--border-subtle)]" />
                 </div>
@@ -174,17 +175,17 @@ export default function AnalyticsPage() {
               <h3 className="font-display font-bold text-xs opacity-70 uppercase pb-2 border-b border-[var(--border-subtle)]">ثبت کوهورت جدید</h3>
               <form onSubmit={handleAddCohort} className="space-y-4 text-sm">
                 <div>
-                  <label className="block text-xs font-medium opacity-70 mb-1">نام کوهورت</label>
+                  <label className="block text-xs font-medium opacity-70 mb-1"><FieldLabel label="نام کوهورت" hint="این گروه کاربر کی عضو شدن؟ مثلاً «فروردین ۱۴۰۵»" /></label>
                   <input type="text" required value={newCohortName} onChange={e => setNewCohortName(e.target.value)}
                     className="w-full px-3 py-1.5 rounded bg-[var(--bg-paper)] border border-[var(--border-subtle)]" />
                 </div>
                 <div>
-                  <label className="block text-xs font-medium opacity-70 mb-1">سایز</label>
+                  <label className="block text-xs font-medium opacity-70 mb-1"><FieldLabel label="سایز" hint="تعداد کل کاربرانی که در این کوهورت عضو شدن" /></label>
                   <input type="number" required value={newCohortSize} onChange={e => setNewCohortSize(Number(e.target.value))}
                     className="w-full px-3 py-1.5 rounded bg-[var(--bg-paper)] border border-[var(--border-subtle)] font-mono-num" />
                 </div>
                 <div>
-                  <label className="block text-xs font-medium opacity-70 mb-1">درصدهای ماندگاری (جداشده با کاما)</label>
+                  <label className="block text-xs font-medium opacity-70 mb-1"><FieldLabel label="درصدهای ماندگاری" hint="از این کوهورت، توی هر دوره چند درصد هنوز فعالن؟ اولی همیشه ۱۰۰ (مثلاً 100, 70, 55, 45, 38)" /></label>
                   <input type="text" required value={newPeriods} onChange={e => setNewPeriods(e.target.value)}
                     className="w-full px-3 py-1.5 rounded bg-[var(--bg-paper)] border border-[var(--border-subtle)] font-mono-num" />
                 </div>

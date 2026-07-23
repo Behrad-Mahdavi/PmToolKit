@@ -5,6 +5,7 @@ import { useParams } from 'next/navigation'
 import { Sidebar } from '@/components/Sidebar'
 import { getExperiments, saveExperiment, Experiment } from '@/lib/pmStore'
 import { useDarkMode } from '@/hooks/useDarkMode'
+import { FieldLabel } from '@/components/FieldLabel'
 import { FlaskConical, AlertTriangle, CheckCircle2, Calculator, Plus, Check } from 'lucide-react'
 
 export default function ExperimentsPage() {
@@ -123,18 +124,18 @@ export default function ExperimentsPage() {
                     </select>
                   </div>
                   <div>
-                    <label className="block text-xs font-medium opacity-70 mb-1">نرخ تبدیل پایه (%)</label>
+                    <label className="block text-xs font-medium opacity-70 mb-1"><FieldLabel label="نرخ تبدیل پایه (%)" hint="نرخ تبدیل فعلیت چقدره؟ بین ۰ تا ۱۰۰٪ (مثلاً اگه از هر ۱۰۰ نفر ۵ نفر می‌خرن، بزن ۵٪)" /></label>
                     <input type="number" step="0.1" value={baselineRate} onChange={e => setBaselineRate(Number(e.target.value))}
                       className="w-full px-3 py-2 rounded bg-[var(--bg-paper)] border border-[var(--border-subtle)] font-mono-num" />
                   </div>
                   <div>
-                    <label className="block text-xs font-medium opacity-70 mb-1">MDE (%)</label>
+                    <label className="block text-xs font-medium opacity-70 mb-1"><FieldLabel label="MDE (%)" hint="کوچیک‌ترین تفاوتی که برات مهمه بتونی تشخیص بدی چقدره؟ هرچی کوچیک‌تر بزنی، نمونه‌ی بیشتری لازم داری" /></label>
                     <input type="number" step="0.1" value={mde} onChange={e => setMde(Number(e.target.value))}
                       className="w-full px-3 py-2 rounded bg-[var(--bg-paper)] border border-[var(--border-subtle)] font-mono-num" />
                   </div>
                   <div className="grid grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-xs font-medium opacity-70 mb-1">Alpha</label>
+                      <label className="block text-xs font-medium opacity-70 mb-1"><FieldLabel label="Alpha" hint="معمولاً ۹۵٪ خوبه؛ یعنی حاضری ۵٪ ریسک اشتباه بگیری" /></label>
                       <select value={alpha} onChange={e => setAlpha(Number(e.target.value))}
                         className="w-full px-3 py-2 rounded bg-[var(--bg-paper)] border border-[var(--border-subtle)]">
                         <option value={0.05}>0.05</option>
@@ -142,7 +143,7 @@ export default function ExperimentsPage() {
                       </select>
                     </div>
                     <div>
-                      <label className="block text-xs font-medium opacity-70 mb-1">Power</label>
+                      <label className="block text-xs font-medium opacity-70 mb-1"><FieldLabel label="Power" hint="معمولاً ۸۰٪ کافیه؛ یعنی ۸۰٪ مطمئنی اگه واقعاً تفاوتی هست، پیداش می‌کنی" /></label>
                       <select value={power} onChange={e => setPower(Number(e.target.value))}
                         className="w-full px-3 py-2 rounded bg-[var(--bg-paper)] border border-[var(--border-subtle)]">
                         <option value={0.8}>0.8</option>
@@ -168,22 +169,22 @@ export default function ExperimentsPage() {
                   </h3>
                   <div className="grid grid-cols-2 gap-4 text-sm">
                     <div>
-                      <label className="block text-xs font-medium opacity-70 mb-1">کنترل (n1)</label>
+                      <label className="block text-xs font-medium opacity-70 mb-1"><FieldLabel label="کنترل (n1)" hint="تعداد کل افراد گروه کنترل که توی تست شرکت کردن" /></label>
                       <input type="number" value={n1} onChange={e => setN1(Number(e.target.value))}
                         className="w-full px-3 py-2 rounded bg-[var(--bg-paper)] border border-[var(--border-subtle)] font-mono-num" />
                     </div>
                     <div>
-                      <label className="block text-xs font-medium opacity-70 mb-1">کنترل (x1)</label>
+                      <label className="block text-xs font-medium opacity-70 mb-1"><FieldLabel label="کنترل (x1)" hint="تعداد کاربرانی از گروه کنترل که عمل مورد نظر رو انجام دادن (مثلاً خرید)" /></label>
                       <input type="number" value={x1} onChange={e => setX1(Number(e.target.value))}
                         className="w-full px-3 py-2 rounded bg-[var(--bg-paper)] border border-[var(--border-subtle)] font-mono-num" />
                     </div>
                     <div>
-                      <label className="block text-xs font-medium opacity-70 mb-1">جدید (n2)</label>
+                      <label className="block text-xs font-medium opacity-70 mb-1"><FieldLabel label="جدید (n2)" hint="تعداد کل افراد گروه جدید (تست) که توی تست شرکت کردن" /></label>
                       <input type="number" value={n2} onChange={e => setN2(Number(e.target.value))}
                         className="w-full px-3 py-2 rounded bg-[var(--bg-paper)] border border-[var(--border-subtle)] font-mono-num" />
                     </div>
                     <div>
-                      <label className="block text-xs font-medium opacity-70 mb-1">جدید (x2)</label>
+                      <label className="block text-xs font-medium opacity-70 mb-1"><FieldLabel label="جدید (x2)" hint="تعداد کاربرانی از گروه جدید که عمل مورد نظر رو انجام دادن (مثلاً خرید)" /></label>
                       <input type="number" value={x2} onChange={e => setX2(Number(e.target.value))}
                         className="w-full px-3 py-2 rounded bg-[var(--bg-paper)] border border-[var(--border-subtle)] font-mono-num" />
                     </div>
